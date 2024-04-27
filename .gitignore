@@ -1,0 +1,12 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.DS_Store
+
+# Virtual Environment
+.venv/
+
+# Ignore contents of ISO folder
+ISO/*
