@@ -25,8 +25,9 @@ PI_IMAGES = {
     "Raspbian Lite": "https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-2024-03-15/2024-03-15-raspios-bookworm-armhf-lite.img.xz",
     "Ubuntu Server LTS Pi4": "https://cdimage.ubuntu.com/releases/22.04.4/release/ubuntu-22.04.4-preinstalled-server-arm64+raspi.img.xz?_gl=1*1b5ic9m*_gcl_au*NzU3MjM0MDYuMTcxMTczMjY5Nw..&_ga=2.263526153.483009528.1711851402-1604720038.1711732675",
     "Ubuntu Server Pi5": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz?_gl=1*1raez99*_gcl_au*NzU3MjM0MDYuMTcxMTczMjY5Nw..&_ga=2.200611883.483009528.1711851402-1604720038.1711732675",
-    "DietPi": "https://dietpi.com/downloads/images/testing/DietPi_RPi5-ARMv8-Bookworm.img.xz"
+    "DietPi": "https://dietpi.com/downloads/images/testing/DietPi_RPi5-ARMv8-Bookworm.img.xz",
 }
+
 
 def check_ISO_dir():
     if not os.path.exists(download_dir):
@@ -148,7 +149,6 @@ def flash_image(img_file):
         )
 
 
-
 def main():
     while True:
         try:
@@ -201,26 +201,6 @@ def main():
                     continue
                 img_name = list(IMAGES.keys())[choice]
                 img_url = IMAGES[img_name]
-                console.clear()
-                console.print(
-                    "Please select an image file to download and flash onto the SD card:",
-                    style="bold green",
-                )
-                for i, img_name in enumerate(ARCH_IMAGES.keys(), start=1):
-                    console.print(f"{i}) {img_name}")
-                console.print(f"{i+1}) Back")
-                choice = Prompt.ask(
-                    "Please enter your choice:",
-                    choices=[str(i) for i in range(1, len(ARCH_IMAGES) + 2)],
-                    default="1",
-                )
-                choice = int(choice) - 1
-                if choice == len(ARCH_IMAGES):
-                    console.clear()
-                    continue
-                selected_image = list(ARCH_IMAGES.keys())[choice]
-                if selected_image == "Archlinux ARM PI5":
-                    archInstall()
             elif choice == 3:
                 console.clear()
                 break
